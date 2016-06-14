@@ -1,0 +1,71 @@
+﻿<Window x:Class="Orbiter.InputWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Orbiter"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        mc:Ignorable="d"
+        Title="Input" Height="Auto" Width="350" SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Content="Welcome to the Planetary Orbit Simulator."/>
+        <Label Grid.Row="1" Grid.Column="0"
+               Content="Planet" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="1" Grid.Column="1"
+                  x:Name="planetComboBox" Margin="0,4,8,4">
+            <ComboBoxItem Content="Mercury"/>
+            <ComboBoxItem Content="Venus"/>
+            <ComboBoxItem Content="Earth"/>
+            <ComboBoxItem Content="Mars"/>
+            <ComboBoxItem Content="Jupiter"/>
+            <ComboBoxItem Content="Saturn"/>
+            <ComboBoxItem Content="Uranus"/>
+            <ComboBoxItem Content="Neptune"/>
+        </ComboBox>
+        <Label Grid.Row="2" Grid.Column="0"
+               Content="Time step, dt" VerticalAlignment="Center"/>
+        <wfi:WindowsFormsHost Grid.Row="2"
+                              Grid.Column="1"
+                              Margin="0,4,8,4">
+            <wf:NumericUpDown x:Name="timestepUpDown"
+                              Value="0.001"
+                              Increment="0.001"
+                              Minimum="0.001"
+                              Maximum="1"
+                              DecimalPlaces="3" />
+        </wfi:WindowsFormsHost>
+        <Label Grid.Row="3" Grid.Column="0"
+               Content="Length in years" VerticalAlignment="Center"/>
+        <wfi:WindowsFormsHost Grid.Row="3"
+                              Grid.Column="1"
+                              Margin="0,4,8,4">
+            <wf:NumericUpDown x:Name="lengthUpDown"
+                              Value="1"
+                              Increment="1"
+                              Minimum="0.1"
+                              Maximum="1000"
+                              DecimalPlaces="1" />
+        </wfi:WindowsFormsHost>
+        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                    Margin="8">
+            <Button Content="Run" Width="75" Margin="0,0,8,0" Click="Button_RunClick" IsDefault="True"/>
+            <Button Content="Cancel" Width="75" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>
